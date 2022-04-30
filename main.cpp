@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include <cstdlib>
 using namespace std;
 struct caracter
 {
@@ -55,7 +56,28 @@ int main()
         cout<<"----------------------------------------------"<<endl;
         cout<<"enter the number of the attack you want"<<endl;
         cin>>id;
-        if(atck[id-1].point>=hero.point){
+        if(id>4 || id==0){
+            cout<<"----------------------------------------------"<<endl;
+            cout<<"please enter a number between 1 and 4 >:("<<endl;
+            while(cin>>id){
+                if(id<=4 && id>0)
+                 break;
+                else{
+                     cout<<"----------------------------------------------"<<endl;
+                     cout<<"please enter a number between 1 and 4 >:("<<endl;
+                     cout<<"----------------------------------------------"<<endl;
+                }
+            }
+    
+        }
+        if(id==4){
+            hero.hp=hero.hp+potion.heal;
+            hero.point=hero.point-potion.point;
+            cout<<"----------------------------------------------"<<endl;
+            cout<<"you gain +"<<potion.heal<<" health and u lose -"<<potion.point<<" P-point"<<endl;
+        }
+        else {
+          if(atck[id-1].point>=hero.point){
             cout<<"----------------------------------------------"<<endl;
             cout<<"you don't have a enuogh P-point for that attack, please choose different attack"<<endl;;
             cout<<"----------------------------------------------"<<endl;
@@ -69,19 +91,13 @@ int main()
                 }
             }
         }
-         if(id==4){
-            hero.hp=hero.hp+potion.heal;
-            hero.point=hero.point-potion.point;
-            cout<<"----------------------------------------------"<<endl;
-            cout<<"you gain +"<<potion.heal<<" health and u lose -"<<potion.point<<" P-point"<<endl;
-         }
-         else{
             monster.hp=monster.hp-atck[id-1].damage;
             hero.point=hero.point-atck[id-1].point;
             cout<<"----------------------------------------------"<<endl;
             cout<<"you have done "<<atck[id-1].damage<<" damage to the monster and u lose -"<<atck[id-1].point<<" P-point"<<endl;
-         }
-        monster.damage = rand()%(11) + 15;
+        }
+        
+        monster.damage = rand()%(6) + 15;
         hero.hp=hero.hp-monster.damage;
         cout<<"----------------------------------------------"<<endl;
         cout<<"monster have done -"<<monster.damage<<" damag to you"<<endl;
