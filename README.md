@@ -1,2 +1,2 @@
-# simple-game
-this is a simple game made for fun
+# basic-game
+this is a basic game made for fun
